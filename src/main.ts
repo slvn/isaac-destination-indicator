@@ -26,7 +26,6 @@ let destination;
 
 // Define callback functions
 function postGameStarted() {
-  Isaac.DebugString("Callback triggered: MC_POST_GAME_STARTED");
   sprite.Load("gfx/ui/hudpickups.anm2", true);
 }
 
@@ -54,9 +53,6 @@ function inputAction(
     } else {
       return null;
     }
-
-    Isaac.DebugString("----- destination-indicator - Input -----  ");
-
     return false;
   }
   return null;
@@ -66,18 +62,20 @@ function postRender() {
   const offset = ScreenHelper.GetOffset();
 
   const x = base.X + 2 * offset;
-  const y = base.Y + 1.2 * offset + jacobYOffset();
+  const y = base.Y + 1.2 * offset + characterYOffset();
 
   sprite.Render(Vector(x, y), Vector(0, 0), Vector(0, 0));
 }
 
-function jacobYOffset(): int {
-  Isaac.DebugString(`Player Type: ${Game().GetPlayer(0)?.GetPlayerType()}`);
-
-  if (Game().GetPlayer(0)?.GetPlayerType() === PlayerType.PLAYER_JACOB) {
-    return 13;
+function characterYOffset(): int {
+  switch (Game().GetPlayer(0)?.GetPlayerType()) {
+    case PlayerType.PLAYER_JACOB:
+      return 13;
+    case PlayerType.PLAYER_BETHANY_B:
+      return 8;
+    default:
+      return 0;
   }
-  return 0;
 }
 
 // Register callbacks

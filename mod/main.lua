@@ -19,16 +19,27 @@ local function require(file)
 end
 ____modules = {
 ["main"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-function jacobYOffset(self)
-    Isaac.DebugString(
-        "Player Type: " .. tostring(
-            Game():GetPlayer(0):GetPlayerType()
-        )
-    )
-    if Game():GetPlayer(0):GetPlayerType() == PlayerType.PLAYER_JACOB then
+function characterYOffset(self)
+    local ____switch14 = Game():GetPlayer(0):GetPlayerType()
+    if ____switch14 == PlayerType.PLAYER_JACOB then
+        goto ____switch14_case_0
+    elseif ____switch14 == PlayerType.PLAYER_BETHANY_B then
+        goto ____switch14_case_1
+    end
+    goto ____switch14_case_default
+    ::____switch14_case_0::
+    do
         return 13
     end
-    return 0
+    ::____switch14_case_1::
+    do
+        return 8
+    end
+    ::____switch14_case_default::
+    do
+        return 0
+    end
+    ::____switch14_end::
 end
 mod_config = require("scripts.modconfig")
 mod = RegisterMod("isaacDestinationIndicator", 1)
@@ -48,7 +59,6 @@ sprite = Sprite()
 base = Vector(20, 73)
 hudOffset = 0
 function postGameStarted(self)
-    Isaac.DebugString("Callback triggered: MC_POST_GAME_STARTED")
     sprite:Load("gfx/ui/hudpickups.anm2", true)
 end
 function inputAction(self, _entity, _hook, _buttonAction)
@@ -69,7 +79,6 @@ function inputAction(self, _entity, _hook, _buttonAction)
         else
             return nil
         end
-        Isaac.DebugString("----- destination-indicator - Input -----  ")
         return false
     end
     return nil
@@ -77,7 +86,7 @@ end
 function postRender(self)
     local offset = ScreenHelper:GetOffset()
     local x = base.X + (2 * offset)
-    local y = (base.Y + (1.2 * offset)) + jacobYOffset(nil)
+    local y = (base.Y + (1.2 * offset)) + characterYOffset(nil)
     sprite:Render(
         Vector(x, y),
         Vector(0, 0),

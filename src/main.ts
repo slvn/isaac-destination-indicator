@@ -17,12 +17,26 @@ const SPRITE_DELIRIUM = 9;
 const SPRITE_MOTHER = 11;
 const SPRITE_THE_BEAST = SPRITE_MEGA_SATAN;
 
+const RANDOM = [
+  SPRITE_MOM_FOOT,
+  SPRITE_MOM_HEART,
+  SPRITE_SATAN,
+  SPRITE_ISAAC,
+  SPRITE_THE_LAMB,
+  SPRITE_BLUE_BABY,
+  SPRITE_MEGA_SATAN,
+  SPRITE_HUSH,
+  SPRITE_DELIRIUM,
+  SPRITE_MOTHER,
+  SPRITE_THE_BEAST,
+]
+
 const sprite = Sprite();
 const base = Vector(20, 73);
 
 const hudOffset = 0;
 
-let destination;
+let destination = SPRITE_EMPTY;
 
 // Define callback functions
 function postGameStarted() {
@@ -41,28 +55,31 @@ function inputAction(
     if (Game().IsPaused()) return null;
 
     if (Input.IsButtonTriggered(Keyboard.KEY_1, 0)) {
-      sprite.SetFrame("Destination", SPRITE_BLUE_BABY);
+      destination = SPRITE_BLUE_BABY
     } else if (Input.IsButtonTriggered(Keyboard.KEY_2, 0)) {
-      sprite.SetFrame("Destination", SPRITE_THE_LAMB);
+      destination = SPRITE_THE_LAMB
     } else if (Input.IsButtonTriggered(Keyboard.KEY_3, 0)) {
-      sprite.SetFrame("Destination", SPRITE_MOTHER);
+      destination = SPRITE_MOTHER
     } else if (Input.IsButtonTriggered(Keyboard.KEY_4, 0)) {
-      sprite.SetFrame("Destination", SPRITE_THE_BEAST);
+      destination =SPRITE_THE_BEAST
     } else if (Input.IsButtonTriggered(Keyboard.KEY_5, 0)) {
-      sprite.SetFrame("Destination", SPRITE_MEGA_SATAN);
+      destination = SPRITE_MEGA_SATAN
     } else if (Input.IsButtonTriggered(Keyboard.KEY_6, 0)) {
-      sprite.SetFrame("Destination", SPRITE_HUSH);
+      destination = SPRITE_HUSH
     } else if (Input.IsButtonTriggered(Keyboard.KEY_7, 0)) {
-      sprite.SetFrame("Destination", SPRITE_DELIRIUM);
+      destination = SPRITE_DELIRIUM
     } else if (Input.IsButtonTriggered(Keyboard.KEY_8, 0)) {
-      sprite.SetFrame("Destination", SPRITE_SATAN);
+      destination = SPRITE_SATAN
     } else if (Input.IsButtonTriggered(Keyboard.KEY_9, 0)) {
-      sprite.SetFrame("Destination", SPRITE_ISAAC);
+      destination = SPRITE_ISAAC
     } else if (Input.IsButtonTriggered(Keyboard.KEY_0, 0)) {
-      sprite.SetFrame("Destination", SPRITE_EMPTY);
+      destination = SPRITE_EMPTY
+    } else if (Input.IsButtonTriggered(Keyboard.KEY_GRAVE_ACCENT, 0)) {
+      destination = RANDOM[Math.floor(Math.random() * RANDOM.length)]
     } else {
       return null;
     }
+    sprite.SetFrame("Destination", destination)
     return false;
   }
   return null;

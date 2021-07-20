@@ -20,26 +20,31 @@ end
 ____modules = {
 ["main"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
 function characterYOffset(self)
-    local ____switch14 = Game():GetPlayer(0):GetPlayerType()
-    if ____switch14 == PlayerType.PLAYER_JACOB then
-        goto ____switch14_case_0
-    elseif ____switch14 == PlayerType.PLAYER_BETHANY_B then
-        goto ____switch14_case_1
+    local ____switch19 = Game():GetPlayer(0):GetPlayerType()
+    if ____switch19 == PlayerType.PLAYER_JACOB then
+        goto ____switch19_case_0
+    elseif ____switch19 == PlayerType.PLAYER_BETHANY then
+        goto ____switch19_case_1
+    elseif ____switch19 == PlayerType.PLAYER_BETHANY_B then
+        goto ____switch19_case_2
     end
-    goto ____switch14_case_default
-    ::____switch14_case_0::
+    goto ____switch19_case_default
+    ::____switch19_case_0::
     do
         return 13
     end
-    ::____switch14_case_1::
+    ::____switch19_case_1::
+    do
+    end
+    ::____switch19_case_2::
     do
         return 8
     end
-    ::____switch14_case_default::
+    ::____switch19_case_default::
     do
         return 0
     end
-    ::____switch14_end::
+    ::____switch19_end::
 end
 mod_config = require("scripts.modconfig")
 mod = RegisterMod("isaacDestinationIndicator", 1)
@@ -74,6 +79,16 @@ function inputAction(self, _entity, _hook, _buttonAction)
             sprite:SetFrame("Destination", SPRITE_MOTHER)
         elseif Input.IsButtonTriggered(Keyboard.KEY_4, 0) then
             sprite:SetFrame("Destination", SPRITE_THE_BEAST)
+        elseif Input.IsButtonTriggered(Keyboard.KEY_5, 0) then
+            sprite:SetFrame("Destination", SPRITE_MEGA_SATAN)
+        elseif Input.IsButtonTriggered(Keyboard.KEY_6, 0) then
+            sprite:SetFrame("Destination", SPRITE_HUSH)
+        elseif Input.IsButtonTriggered(Keyboard.KEY_7, 0) then
+            sprite:SetFrame("Destination", SPRITE_DELIRIUM)
+        elseif Input.IsButtonTriggered(Keyboard.KEY_8, 0) then
+            sprite:SetFrame("Destination", SPRITE_SATAN)
+        elseif Input.IsButtonTriggered(Keyboard.KEY_9, 0) then
+            sprite:SetFrame("Destination", SPRITE_ISAAC)
         elseif Input.IsButtonTriggered(Keyboard.KEY_0, 0) then
             sprite:SetFrame("Destination", SPRITE_EMPTY)
         else

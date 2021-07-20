@@ -48,6 +48,16 @@ function inputAction(
       sprite.SetFrame("Destination", SPRITE_MOTHER);
     } else if (Input.IsButtonTriggered(Keyboard.KEY_4, 0)) {
       sprite.SetFrame("Destination", SPRITE_THE_BEAST);
+    } else if (Input.IsButtonTriggered(Keyboard.KEY_5, 0)) {
+      sprite.SetFrame("Destination", SPRITE_MEGA_SATAN);
+    } else if (Input.IsButtonTriggered(Keyboard.KEY_6, 0)) {
+      sprite.SetFrame("Destination", SPRITE_HUSH);
+    } else if (Input.IsButtonTriggered(Keyboard.KEY_7, 0)) {
+      sprite.SetFrame("Destination", SPRITE_DELIRIUM);
+    } else if (Input.IsButtonTriggered(Keyboard.KEY_8, 0)) {
+      sprite.SetFrame("Destination", SPRITE_SATAN);
+    } else if (Input.IsButtonTriggered(Keyboard.KEY_9, 0)) {
+      sprite.SetFrame("Destination", SPRITE_ISAAC);
     } else if (Input.IsButtonTriggered(Keyboard.KEY_0, 0)) {
       sprite.SetFrame("Destination", SPRITE_EMPTY);
     } else {
@@ -71,6 +81,7 @@ function characterYOffset(): int {
   switch (Game().GetPlayer(0)?.GetPlayerType()) {
     case PlayerType.PLAYER_JACOB:
       return 13;
+    case PlayerType.PLAYER_BETHANY:
     case PlayerType.PLAYER_BETHANY_B:
       return 8;
     default:

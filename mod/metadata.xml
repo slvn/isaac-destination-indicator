@@ -4,11 +4,15 @@
     <directory>destination-indicator</directory>
     <id>2509768985</id>
     <description>Add to the HUD the destination of your current run.
-  - Shift + 1 : Blue Baby
-  - Shift + 2 : The Lamb
-  - Shift + 3 : Mother
-  - Shift + 4 : The beast (currently using mega satan asset)
-  - Shift + 0 : (clear)
+ - Shift + 1 : Blue Baby
+ - Shift + 2 : The Lamb
+ - Shift + 3 : Mother
+ - Shift + 4 : The beast (custom asset)
+ - Shift + 0 : (clear)
+
+Bonus:
+ - Shift + 5/6/7/8/9 will show other bosses like Hush and Delirium
+ - Shift + ` (the key left to 1) will choose a random boss!
 
 Todo:
   - Automatic display using some configuration (all chapters with eden, tainted character to blue baby...)
@@ -19,7 +23,7 @@ Source Code:
 /!\ This mod needs &quot;Mod Config Menu - Continued&quot; to work
 https://steamcommunity.com/sharedfiles/filedetails/?id=2487535818
   </description>
-    <version>0.0.6</version>
+    <version>0.0.7</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Bosses"/>

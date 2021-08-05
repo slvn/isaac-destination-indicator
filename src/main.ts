@@ -4,7 +4,6 @@ const mod_config = require("scripts.modconfig");
 // (which will make it show up in the list of mods on the mod screen in the main menu)
 const mod = RegisterMod("isaacDestinationIndicator", 1);
 
-const SPRITE_EMPTY = 10;
 const SPRITE_MOM_FOOT = 0;
 const SPRITE_MOM_HEART = 1;
 const SPRITE_SATAN = 2;
@@ -16,8 +15,9 @@ const SPRITE_HUSH = 8;
 const SPRITE_DELIRIUM = 9;
 const SPRITE_MOTHER = 10;
 const SPRITE_THE_BEAST = 11;
+const SPRITE_EMPTY = 12;
 
-const RANDOM = [
+const RANDOM = [ 
   SPRITE_MOM_FOOT,
   SPRITE_MOM_HEART,
   SPRITE_SATAN,

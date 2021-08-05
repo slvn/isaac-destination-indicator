@@ -14,8 +14,8 @@ const SPRITE_BLUE_BABY = 5;
 const SPRITE_MEGA_SATAN = 6;
 const SPRITE_HUSH = 8;
 const SPRITE_DELIRIUM = 9;
-const SPRITE_MOTHER = 11;
-const SPRITE_THE_BEAST = SPRITE_MEGA_SATAN;
+const SPRITE_MOTHER = 10;
+const SPRITE_THE_BEAST = 11;
 
 const RANDOM = [
   SPRITE_MOM_FOOT,
@@ -40,7 +40,7 @@ let destination = SPRITE_EMPTY;
 
 // Define callback functions
 function postGameStarted() {
-  sprite.Load("gfx/ui/hudpickups.anm2", true);
+  sprite.Load("gfx/ui/hudpickups2.anm2", true);
 }
 
 function inputAction(
@@ -61,7 +61,7 @@ function inputAction(
     } else if (Input.IsButtonTriggered(Keyboard.KEY_3, 0)) {
       destination = SPRITE_MOTHER
     } else if (Input.IsButtonTriggered(Keyboard.KEY_4, 0)) {
-      destination =SPRITE_THE_BEAST
+      destination = SPRITE_THE_BEAST
     } else if (Input.IsButtonTriggered(Keyboard.KEY_5, 0)) {
       destination = SPRITE_MEGA_SATAN
     } else if (Input.IsButtonTriggered(Keyboard.KEY_6, 0)) {

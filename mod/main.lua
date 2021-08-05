@@ -58,15 +58,15 @@ SPRITE_BLUE_BABY = 5
 SPRITE_MEGA_SATAN = 6
 SPRITE_HUSH = 8
 SPRITE_DELIRIUM = 9
-SPRITE_MOTHER = 11
-SPRITE_THE_BEAST = SPRITE_MEGA_SATAN
+SPRITE_MOTHER = 10
+SPRITE_THE_BEAST = 11
 RANDOM = {SPRITE_MOM_FOOT, SPRITE_MOM_HEART, SPRITE_SATAN, SPRITE_ISAAC, SPRITE_THE_LAMB, SPRITE_BLUE_BABY, SPRITE_MEGA_SATAN, SPRITE_HUSH, SPRITE_DELIRIUM, SPRITE_MOTHER, SPRITE_THE_BEAST}
 sprite = Sprite()
 base = Vector(20, 73)
 hudOffset = 0
 destination = SPRITE_EMPTY
 function postGameStarted(self)
-    sprite:Load("gfx/ui/hudpickups.anm2", true)
+    sprite:Load("gfx/ui/hudpickups2.anm2", true)
 end
 function inputAction(self, _entity, _hook, _buttonAction)
     if Input.IsButtonPressed(Keyboard.KEY_LEFT_SHIFT, 0) or Input.IsButtonPressed(Keyboard.KEY_RIGHT_SHIFT, 0) then

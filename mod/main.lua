@@ -19,34 +19,39 @@ local function require(file)
 end
 ____modules = {
 ["main"] = function() --[[ Generated with https://github.com/TypeScriptToLua/TypeScriptToLua ]]
-function characterYOffset(self)
-    local ____switch20 = Game():GetPlayer(0):GetPlayerType()
-    if ____switch20 == PlayerType.PLAYER_JACOB then
-        goto ____switch20_case_0
-    elseif ____switch20 == PlayerType.PLAYER_BETHANY then
-        goto ____switch20_case_1
-    elseif ____switch20 == PlayerType.PLAYER_BETHANY_B then
-        goto ____switch20_case_2
+function getOffset(self)
+    if ScreenHelper ~= nil then
+        return ScreenHelper:GetOffset()
     end
-    goto ____switch20_case_default
-    ::____switch20_case_0::
+    return 0
+end
+function characterYOffset(self)
+    local ____switch23 = Game():GetPlayer(0):GetPlayerType()
+    if ____switch23 == PlayerType.PLAYER_JACOB then
+        goto ____switch23_case_0
+    elseif ____switch23 == PlayerType.PLAYER_BETHANY then
+        goto ____switch23_case_1
+    elseif ____switch23 == PlayerType.PLAYER_BETHANY_B then
+        goto ____switch23_case_2
+    end
+    goto ____switch23_case_default
+    ::____switch23_case_0::
     do
         return 13
     end
-    ::____switch20_case_1::
+    ::____switch23_case_1::
     do
     end
-    ::____switch20_case_2::
+    ::____switch23_case_2::
     do
         return 8
     end
-    ::____switch20_case_default::
+    ::____switch23_case_default::
     do
         return 0
     end
-    ::____switch20_end::
+    ::____switch23_end::
 end
-mod_config = require("scripts.modconfig")
 mod = RegisterMod("isaacDestinationIndicator", 1)
 SPRITE_MOM_FOOT = 0
 SPRITE_MOM_HEART = 1
@@ -67,6 +72,11 @@ hudOffset = 0
 destination = SPRITE_EMPTY
 function postGameStarted(self)
     sprite:Load("gfx/ui/hudpickups2.anm2", true)
+    local seed = Game():GetSeeds():GetStartSeed()
+    Isaac.DebugString(
+        "isaac-destination-indicator using seed: " .. tostring(seed)
+    )
+    math.randomseed(seed)
 end
 function inputAction(self, _entity, _hook, _buttonAction)
     if Input.IsButtonPressed(Keyboard.KEY_LEFT_SHIFT, 0) or Input.IsButtonPressed(Keyboard.KEY_RIGHT_SHIFT, 0) then
@@ -94,9 +104,9 @@ function inputAction(self, _entity, _hook, _buttonAction)
         elseif Input.IsButtonTriggered(Keyboard.KEY_0, 0) then
             destination = SPRITE_EMPTY
         elseif Input.IsButtonTriggered(Keyboard.KEY_GRAVE_ACCENT, 0) then
-            destination = RANDOM[math.floor(
-                math.random() * #RANDOM
-            ) + 1]
+            destination = RANDOM[(Random() % #RANDOM) + 1]
+        elseif Input.IsButtonTriggered(Keyboard.KEY_BACKSPACE, 0) then
+            destination = RANDOM[(Random() % #RANDOM) + 1]
         else
             return nil
         end
@@ -106,7 +116,7 @@ function inputAction(self, _entity, _hook, _buttonAction)
     return nil
 end
 function postRender(self)
-    local offset = ScreenHelper:GetOffset()
+    local offset = getOffset(nil)
     local x = base.X + (2 * offset)
     local y = (base.Y + (1.2 * offset)) + characterYOffset(nil)
     sprite:Render(

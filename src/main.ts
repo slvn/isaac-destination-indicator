@@ -1,5 +1,3 @@
-const mod_config = require("scripts.modconfig");
-
 // Register the mod
 // (which will make it show up in the list of mods on the mod screen in the main menu)
 const mod = RegisterMod("isaacDestinationIndicator", 1);
@@ -17,7 +15,7 @@ const SPRITE_MOTHER = 10;
 const SPRITE_THE_BEAST = 11;
 const SPRITE_EMPTY = 12;
 
-const RANDOM = [ 
+const RANDOM = [
   SPRITE_MOM_FOOT,
   SPRITE_MOM_HEART,
   SPRITE_SATAN,
@@ -29,7 +27,7 @@ const RANDOM = [
   SPRITE_DELIRIUM,
   SPRITE_MOTHER,
   SPRITE_THE_BEAST,
-]
+];
 
 const sprite = Sprite();
 const base = Vector(20, 73);
@@ -41,6 +39,9 @@ let destination = SPRITE_EMPTY;
 // Define callback functions
 function postGameStarted() {
   sprite.Load("gfx/ui/hudpickups2.anm2", true);
+  const seed = Game().GetSeeds().GetStartSeed();
+  Isaac.DebugString(`isaac-destination-indicator using seed: ${seed}`);
+  math.randomseed(seed);
 }
 
 function inputAction(
@@ -55,43 +56,52 @@ function inputAction(
     if (Game().IsPaused()) return null;
 
     if (Input.IsButtonTriggered(Keyboard.KEY_1, 0)) {
-      destination = SPRITE_BLUE_BABY
+      destination = SPRITE_BLUE_BABY;
     } else if (Input.IsButtonTriggered(Keyboard.KEY_2, 0)) {
-      destination = SPRITE_THE_LAMB
+      destination = SPRITE_THE_LAMB;
     } else if (Input.IsButtonTriggered(Keyboard.KEY_3, 0)) {
-      destination = SPRITE_MOTHER
+      destination = SPRITE_MOTHER;
     } else if (Input.IsButtonTriggered(Keyboard.KEY_4, 0)) {
-      destination = SPRITE_THE_BEAST
+      destination = SPRITE_THE_BEAST;
     } else if (Input.IsButtonTriggered(Keyboard.KEY_5, 0)) {
-      destination = SPRITE_MEGA_SATAN
+      destination = SPRITE_MEGA_SATAN;
     } else if (Input.IsButtonTriggered(Keyboard.KEY_6, 0)) {
-      destination = SPRITE_HUSH
+      destination = SPRITE_HUSH;
     } else if (Input.IsButtonTriggered(Keyboard.KEY_7, 0)) {
-      destination = SPRITE_DELIRIUM
+      destination = SPRITE_DELIRIUM;
     } else if (Input.IsButtonTriggered(Keyboard.KEY_8, 0)) {
-      destination = SPRITE_SATAN
+      destination = SPRITE_SATAN;
     } else if (Input.IsButtonTriggered(Keyboard.KEY_9, 0)) {
-      destination = SPRITE_ISAAC
+      destination = SPRITE_ISAAC;
     } else if (Input.IsButtonTriggered(Keyboard.KEY_0, 0)) {
-      destination = SPRITE_EMPTY
+      destination = SPRITE_EMPTY;
     } else if (Input.IsButtonTriggered(Keyboard.KEY_GRAVE_ACCENT, 0)) {
-      destination = RANDOM[Math.floor(Math.random() * RANDOM.length)]
+      destination = RANDOM[Random() % RANDOM.length];
+    } else if (Input.IsButtonTriggered(Keyboard.KEY_BACKSPACE, 0)) {
+      destination = RANDOM[Random() % RANDOM.length];
     } else {
       return null;
     }
-    sprite.SetFrame("Destination", destination)
+    sprite.SetFrame("Destination", destination);
     return false;
   }
   return null;
 }
 
 function postRender() {
-  const offset = ScreenHelper.GetOffset();
+  const offset = getOffset();
 
   const x = base.X + 2 * offset;
   const y = base.Y + 1.2 * offset + characterYOffset();
 
   sprite.Render(Vector(x, y), Vector(0, 0), Vector(0, 0));
+}
+
+function getOffset() {
+  if (ScreenHelper != null) {
+    return ScreenHelper.GetOffset();
+  }
+  return 0;
 }
 
 function characterYOffset(): int {

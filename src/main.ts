@@ -45,15 +45,15 @@ function postGameStarted() {
 }
 
 function inputAction(
-  _entity: Entity,
-  _hook: any,
+  _entity: Entity | undefined,
+  _inputHook: InputHook,
   _buttonAction: ButtonAction,
-): number | boolean | null {
+): number | boolean | void {
   if (
     Input.IsButtonPressed(Keyboard.KEY_LEFT_SHIFT, 0) ||
     Input.IsButtonPressed(Keyboard.KEY_RIGHT_SHIFT, 0)
   ) {
-    if (Game().IsPaused()) return null;
+    if (Game().IsPaused()) return;
 
     if (Input.IsButtonTriggered(Keyboard.KEY_1, 0)) {
       destination = SPRITE_BLUE_BABY;
@@ -80,12 +80,12 @@ function inputAction(
     } else if (Input.IsButtonTriggered(Keyboard.KEY_BACKSPACE, 0)) {
       destination = RANDOM[Random() % RANDOM.length];
     } else {
-      return null;
+      return;
     }
     sprite.SetFrame("Destination", destination);
     return false;
   }
-  return null;
+  return;
 }
 
 function postRender() {
@@ -98,14 +98,11 @@ function postRender() {
 }
 
 function getOffset() {
-  if (ScreenHelper != null) {
-    return ScreenHelper.GetOffset();
-  }
-  return 0;
+  return Options.HUDOffset * 10;
 }
 
 function characterYOffset(): int {
-  switch (Game().GetPlayer(0)?.GetPlayerType()) {
+  switch (Isaac.GetPlayer()?.GetPlayerType()) {
     case PlayerType.PLAYER_JACOB:
       return 13;
     case PlayerType.PLAYER_BETHANY:

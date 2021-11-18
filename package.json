@@ -1,6 +1,6 @@
 {
   "name": "isaac-destination-indicator",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A mod for The Binding of Isaac: Repentance",
   "keywords": [
     "isaac",
@@ -11,6 +11,8 @@
   ],
   "license": "GPL-3.0",
   "dependencies": {
-    "isaacscript": "^1.1.39"
+    "isaac-typescript-definitions": "^1.0.262",
+    "isaacscript": "^1.1.39",
+    "isaacscript-tsconfig": "^1.1.4"
   }
 }
